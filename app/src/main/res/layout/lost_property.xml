@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/search_background">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bus"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bus_button"/>
+
+        <Button
+            android:id="@+id/subway"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_subway_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/taxi"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:text="택시"
+            android:layout_weight="1"
+            android:background="@drawable/search_taxi_button"/>
+
+        <Button
+            android:id="@+id/public_institution"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_public_button"/>
+
+    </LinearLayout>
+</LinearLayout>

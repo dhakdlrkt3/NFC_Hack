@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/search_background"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btn_taxi1"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:background="@drawable/search_taxi_law_button"/>
+
+    <ImageButton
+        android:id="@+id/btn_taxi2"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:background="@drawable/search_taxi_indivi_button"/>
+
+</LinearLayout>

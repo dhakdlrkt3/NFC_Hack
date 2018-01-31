@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/search_background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_subway1"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/search_subway_1234_button"/>
+
+        <ImageButton
+            android:id="@+id/btn_subway2"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/search_subway_5678_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_subway3"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/search_subway_9_button"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
