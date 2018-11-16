@@ -23,14 +23,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class Calling extends AppCompatActivity {
 
     NfcAdapter nfcAdapter;
-
     EditText phoneno;
     Button callbtn;
     String urlAddress;
