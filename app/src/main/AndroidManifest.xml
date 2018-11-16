@@ -30,13 +30,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name="com.example.HackerTon.NFC_Hack.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.example.HackerTon.NFC_Hack.Idinfo"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name="com.example.HackerTon.NFC_Hack.Calling"
             android:theme="@style/AppTheme.NoActionBar" />
