@@ -1,26 +1,25 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
-        import java.net.URL;
+import java.net.URL;
 
-        import javax.xml.parsers.DocumentBuilder;
-        import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-        import org.w3c.dom.Document;
-        import org.w3c.dom.Element;
-        import org.w3c.dom.Node;
-        import org.w3c.dom.NodeList;
-        import org.xml.sax.InputSource;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
-        import android.app.Activity;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.view.WindowManager;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class LostBus extends Activity {
+public class LostBus2 extends Activity {
 
     TextView textview;
     Document doc = null;
@@ -36,8 +35,8 @@ public class LostBus extends Activity {
         textview = (TextView) findViewById(R.id.textView1);
 
         GetXMLTask task = new GetXMLTask();
-        String api_key = "6762557a6369797335314677466e58";
-        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/b1/";
+        String api_key = "714a73676869797335366b6b454a4e";
+        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/b2/";
         task.execute(url);
     }
 

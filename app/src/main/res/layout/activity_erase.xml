@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bongjae.nfctest.Erase">
+    tools:context="com.example.HackerTon.NFC_Hack.Erase">
 
     <ImageView
         android:id="@+id/tagimg"

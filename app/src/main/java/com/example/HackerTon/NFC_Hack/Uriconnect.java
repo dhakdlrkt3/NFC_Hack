@@ -1,4 +1,4 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

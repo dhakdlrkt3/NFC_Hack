@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/input_background"
-    tools:context="com.example.bongjae.nfctest.SendingMessage">
+    tools:context="com.example.HackerTon.NFC_Hack.SendingMessage">
 
     <LinearLayout
         android:layout_width="match_parent"

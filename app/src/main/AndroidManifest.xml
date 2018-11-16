@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bongjae.nfctest">
+    package="com.example.HackerTon.NFC_Hack">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name="com.example.HackerTon.NFC_Hack.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,40 +32,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.HackerTon.NFC_Hack.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Idinfo"
+            android:name="com.example.HackerTon.NFC_Hack.Idinfo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Calling"
+            android:name="com.example.HackerTon.NFC_Hack.Calling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Uriconnect"
+            android:name="com.example.HackerTon.NFC_Hack.Uriconnect"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UriTab"
+            android:name="com.example.HackerTon.NFC_Hack.UriTab"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Erase"
+            android:name="com.example.HackerTon.NFC_Hack.Erase"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LostProperty"
+            android:name="com.example.HackerTon.NFC_Hack.LostProperty"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LostBus"
+            android:name="com.example.HackerTon.NFC_Hack.LostBus"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LostSubway"
+            android:name="com.example.HackerTon.NFC_Hack.LostSubway"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LostTaxi"
+            android:name="com.example.HackerTon.NFC_Hack.LostTaxi"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Public_institution"
+            android:name="com.example.HackerTon.NFC_Hack.Public_institution"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SendingMessage"
+            android:name="com.example.HackerTon.NFC_Hack.SendingMessage"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -79,25 +79,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Bus"
+            android:name="com.example.HackerTon.NFC_Hack.Bus"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".LostBus2"
+            android:name="com.example.HackerTon.NFC_Hack.LostBus2"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".LostTaxi2"
+            android:name="com.example.HackerTon.NFC_Hack.LostTaxi2"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Taxi"
+            android:name="com.example.HackerTon.NFC_Hack.Taxi"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".LostSubway2"
+            android:name="com.example.HackerTon.NFC_Hack.LostSubway2"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".LostSubway3"
+            android:name="com.example.HackerTon.NFC_Hack.LostSubway3"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Subway"
+            android:name="com.example.HackerTon.NFC_Hack.Subway"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

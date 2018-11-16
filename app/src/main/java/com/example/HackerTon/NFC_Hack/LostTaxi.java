@@ -1,4 +1,4 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
 import java.net.URL;
 
@@ -14,13 +14,12 @@ import org.xml.sax.InputSource;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LostTaxi2 extends Activity {
+public class LostTaxi extends Activity {
 
     TextView textview;
     Document doc = null;
@@ -36,8 +35,8 @@ public class LostTaxi2 extends Activity {
         textview = (TextView) findViewById(R.id.textView1);
 
         GetXMLTask task = new GetXMLTask();
-        String api_key = "6154614f5869797336387955776172";
-        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/t2/";
+        String api_key = "6e4b69634569797338307141446644";
+        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/t1/";
         task.execute(url);
     }
 

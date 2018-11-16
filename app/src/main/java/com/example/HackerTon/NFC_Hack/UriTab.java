@@ -1,8 +1,7 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

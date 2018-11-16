@@ -1,26 +1,25 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
-import java.net.URL;
+        import java.net.URL;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+        import javax.xml.parsers.DocumentBuilder;
+        import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+        import org.w3c.dom.Document;
+        import org.w3c.dom.Element;
+        import org.w3c.dom.Node;
+        import org.w3c.dom.NodeList;
+        import org.xml.sax.InputSource;
 
-import android.app.Activity;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.app.Activity;
+        import android.os.AsyncTask;
+        import android.os.Bundle;
+        import android.view.WindowManager;
+        import android.widget.LinearLayout;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-public class LostSubway2 extends Activity {
+public class LostBus extends Activity {
 
     TextView textview;
     Document doc = null;
@@ -29,15 +28,15 @@ public class LostSubway2 extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lost_subway);
+        setContentView(R.layout.lost_bus);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         textview = (TextView) findViewById(R.id.textView1);
 
         GetXMLTask task = new GetXMLTask();
-        String api_key = "63666c516869797334384f48535866";
-        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/5/s2/";
+        String api_key = "6762557a6369797335314677466e58";
+        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/b1/";
         task.execute(url);
     }
 
@@ -61,35 +60,25 @@ public class LostSubway2 extends Activity {
 
         @Override
         protected void onPostExecute(Document doc) {
-            /*
-            NodeList nodeList_check = doc.getElementsByTagName("RESULT");
-            Node node_check = nodeList_check.item(0);
-            Element fstElmnt_check = (Element) node_check;
-            NodeList nameList_check  = fstElmnt_check.getElementsByTagName("MESSAGE");
-            Element nameID_check = (Element) nameList_check.item(0);
-            nameList_check = nameID_check.getChildNodes();
-
-            String s_check = ((Node) nameList_check.item(0)).getNodeValue();
-            */
 
             String s = "";
             //row태그가 있는 노드를 찾아서 리스트 형태로 만들어서 반환
-            NodeList nodeList = doc.getElementsByTagName("RESULT");
+            NodeList nodeList = doc.getElementsByTagName("row");
             //row태그를 가지는 노드를 찾음, 계층적인 노드 구조를 반환
 
             for(int i = 0; i< nodeList.getLength(); i++){
 
                 //데이터를 추출
-                s += "";
+                s += "No." + i + "\n";
                 Node node = nodeList.item(i); //row 노드
 
                 Element fstElmnt = (Element) node;
-                NodeList nameList  = fstElmnt.getElementsByTagName("MESSAGE");
+                NodeList nameList  = fstElmnt.getElementsByTagName("ID");
                 Element nameID = (Element) nameList.item(0);
                 nameList = nameID.getChildNodes();
-                s += ((Node) nameList.item(0)).getNodeValue() +"\n";
+                s += "분실물 ID = "+ ((Node) nameList.item(0)).getNodeValue() +"\n";
                 // <ID>분실물 ID</ID>
-                /*
+
                 NodeList getNameList = fstElmnt.getElementsByTagName("GET_NAME");
                 // <GET_NAME>습득물품명</GET_NAME>
                 s += "습득물품명 = "+  getNameList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
@@ -110,16 +99,14 @@ public class LostSubway2 extends Activity {
                 // <CATE>습득물분류</CATE>
                 s += "습득물분류 = "+  cateList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
 
-                //NodeList get_positionList = fstElmnt.getElementsByTagName("GET_POSITION");
+                NodeList get_positionList = fstElmnt.getElementsByTagName("GET_POSITION");
                 // <GET_POSITION>습득위치_회사명</GET_POSITION>
-                //s += "습득위치_회사명 = "+  get_positionList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
+                s += "습득위치_회사명 = "+  get_positionList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
 
                 NodeList statusList = fstElmnt.getElementsByTagName("STATUS");
                 // <STATUS>분실물상태</STATUS>
-                s += "분실물상태 = "+  statusList.item(0).getChildNodes().item(0).getNodeValue() +"\n\n";
-                */
+                s += "분실물상태 = "+  statusList.item(0).getChildNodes().item(0).getNodeValue() +"\n\n-----------------------------------------------------\n\n";
             }
-            //textview.setText(s_check);
             textview.setText(s);
             super.onPostExecute(doc);
         }

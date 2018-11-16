@@ -1,9 +1,8 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;

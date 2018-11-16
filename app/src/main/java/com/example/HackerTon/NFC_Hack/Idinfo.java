@@ -1,6 +1,5 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;

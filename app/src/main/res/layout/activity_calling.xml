@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/input_background"
-    tools:context="com.example.bongjae.nfctest.Calling">
+    tools:context="com.example.HackerTon.NFC_Hack.Calling">
 
     <LinearLayout
         android:layout_width="match_parent"

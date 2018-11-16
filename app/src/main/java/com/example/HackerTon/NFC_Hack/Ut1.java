@@ -1,7 +1,5 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.*;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 
-import com.example.bongjae.nfctest.R;
+import com.example.HackerTon.NFC_Hack.R;
 
 /**
  * Created by Bongjae on 2017-03-16.

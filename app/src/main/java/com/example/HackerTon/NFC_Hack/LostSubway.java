@@ -1,4 +1,4 @@
-package com.example.bongjae.nfctest;
+package com.example.HackerTon.NFC_Hack;
 
 import java.net.URL;
 
@@ -14,13 +14,12 @@ import org.xml.sax.InputSource;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LostTaxi extends Activity {
+public class LostSubway extends Activity {
 
     TextView textview;
     Document doc = null;
@@ -29,15 +28,15 @@ public class LostTaxi extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lost_taxi);
+        setContentView(R.layout.lost_subway);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         textview = (TextView) findViewById(R.id.textView1);
 
         GetXMLTask task = new GetXMLTask();
-        String api_key = "6e4b69634569797338307141446644";
-        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/t1/";
+        String api_key = "424a6d657769797338345674617a63";
+        String url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/ListLostArticleService/1/200/s1/";
         task.execute(url);
     }
 
@@ -100,9 +99,9 @@ public class LostTaxi extends Activity {
                 // <CATE>습득물분류</CATE>
                 s += "습득물분류 = "+  cateList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
 
-                NodeList get_positionList = fstElmnt.getElementsByTagName("GET_POSITION");
+                //NodeList get_positionList = fstElmnt.getElementsByTagName("GET_POSITION");
                 // <GET_POSITION>습득위치_회사명</GET_POSITION>
-                s += "습득위치_회사명 = "+  get_positionList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
+                //s += "습득위치_회사명 = "+  get_positionList.item(0).getChildNodes().item(0).getNodeValue() +"\n";
 
                 NodeList statusList = fstElmnt.getElementsByTagName("STATUS");
                 // <STATUS>분실물상태</STATUS>
