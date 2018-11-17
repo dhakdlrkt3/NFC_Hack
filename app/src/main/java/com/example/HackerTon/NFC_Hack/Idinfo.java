@@ -89,14 +89,13 @@ public class Idinfo extends AppCompatActivity {
         mWriteTagFilters = new IntentFilter[] { tagDetected };
 
 
-
         //여기부터 시작
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        /*if (nfcAdapter == null) {
+        if (nfcAdapter == null) {
             // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
-        } 예외처리*/
+        }
 
         readFromIntent(getIntent());
 
@@ -111,7 +110,9 @@ public class Idinfo extends AppCompatActivity {
     /******************************************************************************
      **********************************Read From NFC Tag***************************
      ******************************************************************************/
+
     private void readFromIntent(Intent intent) {
+
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
@@ -129,7 +130,6 @@ public class Idinfo extends AppCompatActivity {
     }
     private void buildTagViews(NdefMessage[] msgs) {
         if (msgs == null || msgs.length == 0) return;
-
         String text = "";
 //        String tagId = new String(msgs[0].getRecords()[0].getType());
         byte[] payload = msgs[0].getRecords()[0].getPayload();
@@ -145,9 +145,11 @@ public class Idinfo extends AppCompatActivity {
         }
 
         tvNFCContent.setText("NFC Content: " + text);
+
     }
 
     //여기까지 붙임
+
     @Override
     protected void onResume() {
         super.onResume();
