@@ -47,12 +47,12 @@ public class readFromIntent extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_readid);
         context = this;
 
         tvNFCContent = (TextView) findViewById(R.id.readID);
-        message = (TextView) findViewById(R.id.textView);
-        btnWrite = (Button) findViewById(R.id.button);
+        message = (TextView) findViewById(R.id.editText2);
+        btnWrite = (Button) findViewById(R.id.button2);
 
         btnWrite.setOnClickListener(new View.OnClickListener()
         {

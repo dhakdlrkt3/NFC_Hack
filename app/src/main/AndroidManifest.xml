@@ -38,6 +38,9 @@
             android:name=".Idinfo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".readFromIntent"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Calling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
