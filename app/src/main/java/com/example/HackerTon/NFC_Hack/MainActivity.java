@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button idinfo, message, calling, uriconn, erase, lost_property;
+    Button idinfo, message, calling, uriconn, erase, lost_property,readFromIntent;
     NfcAdapter nfcAdapter;
 
     @Override
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Idinfo.class));
             }
         });
-
         message = (Button)findViewById(R.id.writeMessage);
         message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +58,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**/
+        readFromIntent = (Button)findViewById(R.id.readID);
+        readFromIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, readFromIntent.class));
+            }
+        });
+
+        readFromIntent = (Button)findViewById(R.id.edit_message);
+        readFromIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, readFromIntent.class));
+            }
+        });
+
+
+        /**/
         calling = (Button)findViewById(R.id.writeCall);
         calling.setOnClickListener(new View.OnClickListener() {
             @Override
