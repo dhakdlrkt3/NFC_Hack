@@ -13,16 +13,28 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.HackerTon.NFC_Hack.R;
+import com.example.HackerTon.NFC_Hack.Calling;
+import com.example.HackerTon.NFC_Hack.Erase;
+import com.example.HackerTon.NFC_Hack.Idinfo;
+import com.example.HackerTon.NFC_Hack.LostProperty;
+import com.example.HackerTon.NFC_Hack.SendingMessage;
+import com.example.HackerTon.NFC_Hack.UriTab;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button idinfo, message, calling, uriconn, erase, lost_property,readFromIntent;
+    Button idinfo, message, calling, uriconn, erase, lost_property;
     NfcAdapter nfcAdapter;
 
     @Override
@@ -50,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Idinfo.class));
             }
         });
+
         message = (Button)findViewById(R.id.writeMessage);
         message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,25 +71,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**/
-        readFromIntent = (Button)findViewById(R.id.readID);
-        readFromIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, readFromIntent.class));
-            }
-        });
-
-        readFromIntent = (Button)findViewById(R.id.edit_message);
-        readFromIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, readFromIntent.class));
-            }
-        });
-
-
-        /**/
         calling = (Button)findViewById(R.id.writeCall);
         calling.setOnClickListener(new View.OnClickListener() {
             @Override

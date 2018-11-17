@@ -1,4 +1,5 @@
 package com.example.HackerTon.NFC_Hack;
+
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -25,14 +26,15 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import java.io.IOException;
 
 
-public class Idinfo extends AppCompatActivity {
+    public class Idinfo extends AppCompatActivity {
 
-    private static final String TAG = "S";
-    private boolean mResumed = false;
-    private boolean mWriteMode = false;
+        private static final String TAG = "S";
+        private boolean mResumed = false;
+        private boolean mWriteMode = false;
     NfcAdapter mNfcAdapter;
     EditText mNote, mNote2,mNote3,mNote4,mNote5;
 
