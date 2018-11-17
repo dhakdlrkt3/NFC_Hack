@@ -36,7 +36,9 @@
         <activity
             android:name="com.example.HackerTon.NFC_Hack.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name="com.example.HackerTon.NFC_Hack.readFromIntent"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.HackerTon.NFC_Hack.Calling"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -99,6 +101,7 @@
         <activity
             android:name="com.example.HackerTon.NFC_Hack.Subway"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
