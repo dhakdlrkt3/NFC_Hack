@@ -99,13 +99,6 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/readID"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/personal_input_button"
-            android:clickable="true" />
 
         <Button
             android:id="@+id/GPS"
