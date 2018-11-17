@@ -1,9 +1,13 @@
 package com.example.HackerTon.NFC_Hack;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.app.Activity;
@@ -47,7 +51,20 @@ public class readFromIntent extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Context mContext = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        AlertDialog.Builder aDialog = new AlertDialog.Builder(readFromIntent.this);
+        View layout = inflater.inflate(R.layout.writetag,(ViewGroup) findViewById(R.id.writepopup));
+        aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
         setContentView(R.layout.activity_readid);
+
+        aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        //팝업창 생성
+        AlertDialog ad = aDialog.create();
+        ad.show();//보여줌!
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
