@@ -13,7 +13,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="273dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="200dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -38,8 +40,7 @@
                 android:id="@+id/textname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:text="TextView" />
+                android:layout_weight="20" />
 
         </LinearLayout>
 
@@ -64,8 +65,7 @@
                 android:id="@+id/textphone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:text="TextView" />
+                android:layout_weight="20" />
 
         </LinearLayout>
 
@@ -90,8 +90,7 @@
                 android:id="@+id/textaddress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:text="TextView" />
+                android:layout_weight="20" />
 
         </LinearLayout>
 
@@ -116,8 +115,7 @@
                 android:id="@+id/textemail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:text="TextView" />
+                android:layout_weight="20" />
 
         </LinearLayout>
 
@@ -126,12 +124,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/savebtn"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
-                android:background="@drawable/button_input" />
 
         </LinearLayout>
 
