@@ -32,10 +32,11 @@ import java.io.IOException;
 
 public class gps extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         Context context = getApplicationContext();
 
         PackageManager packageManager = context.getPackageManager();
-        Intent intent = packageManager.getLaunchIntentForPackage("com.android.GPS to SMS");
+        Intent intent = packageManager.getLaunchIntentForPackage("com.android.ru.perm.trubnikov.gps2sms4");
     }
 }
