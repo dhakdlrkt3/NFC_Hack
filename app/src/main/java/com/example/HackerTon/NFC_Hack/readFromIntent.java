@@ -1,9 +1,13 @@
 package com.example.HackerTon.NFC_Hack;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.app.Activity;
@@ -30,6 +34,7 @@ import android.widget.Toast;
 
 
 public class readFromIntent extends AppCompatActivity {
+
     public static final String ERROR_DETECTED = "No NFC tag detected!";
     public static final String WRITE_SUCCESS = "Text written to the NFC tag successfully!";
     public static final String WRITE_ERROR = "Error during writing, is the NFC tag close enough to your device?";
@@ -41,39 +46,30 @@ public class readFromIntent extends AppCompatActivity {
     Context context;
 
     TextView tvNFCContent;
-    TextView message;
-    Button btnWrite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Context mContext = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        AlertDialog.Builder aDialog = new AlertDialog.Builder(readFromIntent.this);
+        View layout = inflater.inflate(R.layout.writetag,(ViewGroup) findViewById(R.id.writepopup));
+        aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
         setContentView(R.layout.activity_readid);
-        context = this;
 
-        tvNFCContent = (TextView) findViewById(R.id.readID);
-        message = (TextView) findViewById(R.id.editText2);
-        btnWrite = (Button) findViewById(R.id.button2);
-
-        btnWrite.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                try {
-                    if(myTag ==null) {
-                        Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_LONG).show();
-                    } else {
-                        write(message.getText().toString(), myTag);
-                        Toast.makeText(context, WRITE_SUCCESS, Toast.LENGTH_LONG ).show();
-                    }
-                } catch (IOException e) {
-                    Toast.makeText(context, WRITE_ERROR, Toast.LENGTH_LONG ).show();
-                    e.printStackTrace();
-                } catch (FormatException e) {
-                    Toast.makeText(context, WRITE_ERROR, Toast.LENGTH_LONG ).show();
-                    e.printStackTrace();
-                }
+        aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
             }
         });
+        //팝업창 생성
+        AlertDialog ad = aDialog.create();
+        ad.show();//보여줌!
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+ //read 시작
+        tvNFCContent = (TextView) findViewById(R.id.textname);
+
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
@@ -93,6 +89,7 @@ public class readFromIntent extends AppCompatActivity {
     /******************************************************************************
      **********************************Read From NFC Tag***************************
      ******************************************************************************/
+
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
@@ -100,6 +97,7 @@ public class readFromIntent extends AppCompatActivity {
                 || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage[] msgs = null;
+
             if (rawMsgs != null) {
                 msgs = new NdefMessage[rawMsgs.length];
                 for (int i = 0; i < rawMsgs.length; i++) {
@@ -113,7 +111,7 @@ public class readFromIntent extends AppCompatActivity {
         if (msgs == null || msgs.length == 0) return;
 
         String text = "";
-//        String tagId = new String(msgs[0].getRecords()[0].getType());
+ //       String tagId = new String(msgs[0].getRecords()[0].getType());
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
         int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
@@ -126,50 +124,13 @@ public class readFromIntent extends AppCompatActivity {
             Log.e("UnsupportedEncoding", e.toString());
         }
 
-        tvNFCContent.setText("NFC Content: " + text);
+        tvNFCContent.setText(text);
     }
-
-    /******************************************************************************
-     **********************************Write to NFC Tag****************************
-     ******************************************************************************/
-    private void write(String text, Tag tag) throws IOException, FormatException {
-        NdefRecord[] records = { createRecord(text) };
-        NdefMessage message = new NdefMessage(records);
-        // Get an instance of Ndef for the tag.
-        Ndef ndef = Ndef.get(tag);
-        // Enable I/O
-        ndef.connect();
-        // Write the message
-        ndef.writeNdefMessage(message);
-        // Close the connection
-        ndef.close();
-    }
-    private NdefRecord createRecord(String text) throws UnsupportedEncodingException {
-        String lang       = "en";
-        byte[] textBytes  = text.getBytes();
-        byte[] langBytes  = lang.getBytes("US-ASCII");
-        int    langLength = langBytes.length;
-        int    textLength = textBytes.length;
-        byte[] payload    = new byte[1 + langLength + textLength];
-
-        // set status byte (see NDEF spec for actual bits)
-        payload[0] = (byte) langLength;
-
-        // copy langbytes and textbytes into payload
-        System.arraycopy(langBytes, 0, payload, 1,              langLength);
-        System.arraycopy(textBytes, 0, payload, 1 + langLength, textLength);
-
-        NdefRecord recordNFC = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,  NdefRecord.RTD_TEXT,  new byte[0], payload);
-
-        return recordNFC;
-    }
-
-
 
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
-        readFromIntent(intent);
+ //       readFromIntent(intent);
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
             myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         }
@@ -187,11 +148,10 @@ public class readFromIntent extends AppCompatActivity {
         WriteModeOn();
     }
 
-
-
     /******************************************************************************
      **********************************Enable Write********************************
      ******************************************************************************/
+
     private void WriteModeOn(){
         writeMode = true;
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, writeTagFilters, null);
@@ -199,8 +159,10 @@ public class readFromIntent extends AppCompatActivity {
     /******************************************************************************
      **********************************Disable Write*******************************
      ******************************************************************************/
+
     private void WriteModeOff(){
         writeMode = false;
         nfcAdapter.disableForegroundDispatch(this);
     }
+
 }

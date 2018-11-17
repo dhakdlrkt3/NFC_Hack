@@ -106,14 +106,6 @@
         android:clickable="true"
         android:background="@drawable/personal_input_button"/>
 
-        <Button
-            android:id="@+id/edit_message"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:background="@drawable/personal_input_button"/>
-
         <!--
         <Button
             android:id="@+id/GPS"
