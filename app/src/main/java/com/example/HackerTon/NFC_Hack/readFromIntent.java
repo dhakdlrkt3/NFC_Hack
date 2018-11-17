@@ -9,28 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
-import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.Ndef;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.IOException;
+
 import java.io.UnsupportedEncodingException;
-import android.widget.Toast;
+import java.nio.charset.Charset;
 
 
 public class readFromIntent extends AppCompatActivity {
@@ -44,8 +37,8 @@ public class readFromIntent extends AppCompatActivity {
     boolean writeMode;
     Tag myTag;
     Context context;
-
     TextView tvNFCContent;
+    NdefMessage ndefmsg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +49,7 @@ public class readFromIntent extends AppCompatActivity {
         View layout = inflater.inflate(R.layout.writetag,(ViewGroup) findViewById(R.id.writepopup));
         aDialog.setView(layout); //dialog.xml 파일을 뷰로 셋팅
         setContentView(R.layout.activity_readid);
-
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -70,69 +63,53 @@ public class readFromIntent extends AppCompatActivity {
  //read 시작
         tvNFCContent = (TextView) findViewById(R.id.textname);
 
-
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
             // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
         }
-        readFromIntent(getIntent());
+        //@Override
+        protected void onResume() {
+            super.onResume();
+            Parcelable[] messages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES); //태그정보를 저장하기위한 배열;
+            if (messages == null) return;
+            for (int i = 0; i < messages.length; i++)
+                setReadTagData((NdefMessage)messages[0]);
+        }
 
+        public void setReadTagDataa(NdefMessage ndefmsg) {
+            if(ndefmsg == null ) {    //미태그시 반환;
+                return ;
+
+            }
+
+            String msgs = "";
+            msgs += ndefmsg.toString() + "\n";
+            NdefRecord [] records = ndefmsg.getRecords() ;
+            for(NdefRecord rec : records) {
+                byte [] payload = rec.getPayload() ;
+                String textEncoding = "UTF-8" ;
+                if(payload.length > 0)
+                    textEncoding = ( payload[0] & 0200 ) == 0 ? "UTF-8" : "UTF-16";   //nfc정보를 해당 형식으로 인코딩한다
+                Short tnf = rec.getTnf();
+                String type = String.valueOf(rec.getType());
+                String payloadStr = new String(rec.getPayload(), Charset.forName(textEncoding));
+            }
+        }
+       // readFromIntent(getIntent());
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
+        IntentFilter tagDetected = new IntentFilter(nfcAdapter.ACTION_TAG_DISCOVERED);
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writeTagFilters = new IntentFilter[] { tagDetected };
-    }
-
-
-    /******************************************************************************
-     **********************************Read From NFC Tag***************************
-     ******************************************************************************/
-
-    private void readFromIntent(Intent intent) {
-        String action = intent.getAction();
-        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
-                || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
-                || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
-            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-            NdefMessage[] msgs = null;
-
-            if (rawMsgs != null) {
-                msgs = new NdefMessage[rawMsgs.length];
-                for (int i = 0; i < rawMsgs.length; i++) {
-                    msgs[i] = (NdefMessage) rawMsgs[i];
-                }
-            }
-            buildTagViews(msgs);
-        }
-    }
-    private void buildTagViews(NdefMessage[] msgs) {
-        if (msgs == null || msgs.length == 0) return;
-
-        String text = "";
- //       String tagId = new String(msgs[0].getRecords()[0].getType());
-        byte[] payload = msgs[0].getRecords()[0].getPayload();
-        String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
-        int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
-        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-
-        try {
-            // Get the Text
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-        } catch (UnsupportedEncodingException e) {
-            Log.e("UnsupportedEncoding", e.toString());
-        }
-
-        tvNFCContent.setText(text);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
  //       readFromIntent(intent);
-        if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
-            myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        if(nfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
+            myTag = intent.getParcelableExtra(nfcAdapter.EXTRA_TAG);
         }
     }
 
@@ -141,12 +118,20 @@ public class readFromIntent extends AppCompatActivity {
         super.onPause();
         WriteModeOff();
     }
+    public static String byteArrayToHexString(byte[] b) {
+        int len = b.length;
+        String data = new String();
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        WriteModeOn();
+        for (int i = 0; i < len; i++){
+            data += Integer.toHexString((b[i] >> 4) & 0xf);
+            data += Integer.toHexString(b[i] & 0xf);
+        }
+        return data;
     }
+
+
+    출처: http://biig.tistory.com/78 [덩치의 안드로이드 스터디]
+
 
     /******************************************************************************
      **********************************Enable Write********************************
