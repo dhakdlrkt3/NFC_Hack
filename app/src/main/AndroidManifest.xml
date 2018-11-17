@@ -35,14 +35,15 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Idinfo"
+            android:name=".gps"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".readFromIntent"
+            android:name=".Idinfo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Calling"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Uriconnect"
             android:theme="@style/AppTheme.NoActionBar" />

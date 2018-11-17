@@ -86,7 +86,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:clickable="true"
-            android:background="@drawable/tag_reset_button"/>
+            android:background="@drawable/gps_input_button"/>
 
 
 
@@ -105,29 +105,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:clickable="true"
-            android:background="@drawable/message_input_button"/>
+            android:background="@drawable/gps_input_button"
+            android:clickable="true" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="입력" />
 
 </LinearLayout>
