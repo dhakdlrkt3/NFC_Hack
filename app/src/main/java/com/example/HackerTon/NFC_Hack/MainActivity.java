@@ -67,15 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        readFromIntent = (Button)findViewById(R.id.edit_message);
-        readFromIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, readFromIntent.class));
-            }
-        });
-
-
         /**/
         calling = (Button)findViewById(R.id.writeCall);
         calling.setOnClickListener(new View.OnClickListener() {
