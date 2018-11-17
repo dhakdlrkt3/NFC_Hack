@@ -172,5 +172,4 @@ public class SendingMessage extends AppCompatActivity {
         return false;
     }
 
-
 }
