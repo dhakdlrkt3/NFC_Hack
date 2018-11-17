@@ -86,7 +86,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:clickable="true"
-            android:background="@drawable/gps_input_button"/>
+            android:background="@drawable/tag_reset_button"/>
 
 
 
